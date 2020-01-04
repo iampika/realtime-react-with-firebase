@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import db from './db'
 
 function App() {
   const [channels, setChannels] = useState([
@@ -8,12 +9,16 @@ function App() {
   ])
 
   useEffect(() => {
-    setChannels([
-      ...channels,
-      {
-        id: 'random'
-      }
-    ])
+    db.collection('channels').onSnapshot(snapshot => {
+      const docs = []
+      snapshot.forEach(doc => {
+        docs.push({
+          ...doc.data(),
+          id: doc.id
+        })
+      })
+      setChannels(docs)
+    })
   }, [])
 
   return (
@@ -36,7 +41,9 @@ function App() {
         </div>
         <nav className="ChannelNav">
           {channels.map(channel => (
-            <a href={`/channel/${channel.id}`}># {channel.id}</a>
+            <a key={channel.id} href={`/channel/${channel.id}`}>
+              # {channel.id}
+            </a>
           ))}
         </nav>
       </div>
