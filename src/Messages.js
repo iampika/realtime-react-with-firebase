@@ -3,7 +3,7 @@ import useCollection from './useCollection'
 
 const Messages = () => {
   const messages = useCollection(
-    'channels/general/messages',
+    'channels/random/messages',
     'createdAt'
   )
 

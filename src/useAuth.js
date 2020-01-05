@@ -1,16 +1,20 @@
 import { useState, useEffect } from 'react'
-import { firebase } from './firebase'
+import { firebase, db } from './firebase'
 
 const useAuth = () => {
   const [user, setUser] = useState(null)
   useEffect(() => {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        setUser({
-          uid: user.uid,
-          displayName: user.displayName,
-          photoURL: user.photoURL
-        })
+    firebase.auth().onAuthStateChanged(firebaseUser => {
+      if (firebaseUser) {
+        const user = {
+          uid: firebaseUser.uid,
+          displayName: firebaseUser.displayName,
+          photoURL: firebaseUser.photoURL
+        }
+        setUser(user)
+        db.collection('users')
+          .doc(user.uid)
+          .set(user, { merge: true })
       } else {
         setUser(null)
       }

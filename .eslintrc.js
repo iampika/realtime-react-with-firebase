@@ -24,6 +24,7 @@ module.exports = {
   rules: {
     'react/jsx-filename-extension': 0,
     'no-shadow': 0,
-    'react/prop-types': 0
+    'react/prop-types': 0,
+    'react/jsx-fragments': 0
   }
 }
