@@ -1,8 +1,13 @@
 import React from 'react'
 import useCollection from './useCollection'
+import { firebase } from './firebase'
 
-const Nav = () => {
+const Nav = ({ user }) => {
   const channels = useCollection('channels')
+
+  const handleSignOut = () => {
+    firebase.auth().signOut()
+  }
 
   return (
     <div className="Nav">
@@ -10,12 +15,16 @@ const Nav = () => {
         <img
           className="UserImage"
           alt="whatever"
-          src="https://placekitten.com/64/64"
+          src={user.photoURL}
         />
         <div>
-          <div>Mahendra Choudhary</div>
+          <div>{user.displayName}</div>
           <div>
-            <button type="button" className="text-button">
+            <button
+              onClick={handleSignOut}
+              type="button"
+              className="text-button"
+            >
               log out
             </button>
           </div>

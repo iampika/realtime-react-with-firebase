@@ -9,7 +9,11 @@ function App() {
   useEffect(() => {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        setUser(user)
+        setUser({
+          uid: user.uid,
+          displayName: user.displayName,
+          photoURL: user.photoURL
+        })
       } else {
         setUser(null)
       }
@@ -23,7 +27,7 @@ function App() {
 
   return user ? (
     <div className="App">
-      <Nav />
+      <Nav user={user} />
       <Channel />
     </div>
   ) : (
