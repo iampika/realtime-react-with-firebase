@@ -9,7 +9,7 @@ const ChatInputBox = () => {
     // db.collection('channels/general/messages')
 
     db.collection('channels')
-      .doc('random')
+      .doc('general')
       .collection('messages')
       .add({
         text: value,
