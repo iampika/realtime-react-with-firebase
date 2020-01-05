@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import useCollection from './useCollection'
-import { db } from './firebase'
+import FirstMessageFromUser from './FirstMessageFromUser'
 
 const Messages = ({ channelId }) => {
   const messages = useCollection(
@@ -34,56 +34,6 @@ const Messages = ({ channelId }) => {
           </div>
         )
       })}
-    </div>
-  )
-}
-
-const useDoc = path => {
-  const [doc, setDoc] = useState([])
-
-  useEffect(() => {
-    db.doc(path).onSnapshot(doc => {
-      setDoc({
-        ...doc.data(),
-        id: doc.id
-      })
-    })
-  }, [])
-
-  return doc
-}
-
-const FirstMessageFromUser = ({ message, showDay }) => {
-  const author = useDoc(message.user.path)
-
-  return (
-    <div>
-      {showDay && (
-        <div className="Day">
-          <div className="DayLine" />
-          <div className="DayText">12/6/2018</div>
-          <div className="DayLine" />
-        </div>
-      )}
-      <div className="Message with-avatar">
-        <div
-          className="Avatar"
-          style={{
-            backgroundImage: author
-              ? `url("${author.photoURL}")`
-              : ''
-          }}
-        />
-        <div className="Author">
-          <div>
-            <span className="UserName">
-              {author && author.displayName}
-            </span>{' '}
-            <span className="TimeStamp">3:37 PM</span>
-          </div>
-          <div className="MessageContent">{message.text}</div>
-        </div>
-      </div>
     </div>
   )
 }

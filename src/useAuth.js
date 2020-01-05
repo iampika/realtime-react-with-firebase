@@ -3,6 +3,7 @@ import { firebase, db } from './firebase'
 
 const useAuth = () => {
   const [user, setUser] = useState(null)
+
   useEffect(() => {
     firebase.auth().onAuthStateChanged(firebaseUser => {
       if (firebaseUser) {
@@ -20,6 +21,7 @@ const useAuth = () => {
       }
     })
   }, [])
+
   return user
 }
 

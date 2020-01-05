@@ -21,7 +21,8 @@ const useCollection = (path, orderBy) => {
       })
       setDocs(data)
     })
-  }, [])
+  }, [path, orderBy])
+
   return docs
 }
 

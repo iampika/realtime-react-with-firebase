@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from '@reach/router'
 import { firebase } from './firebase'
 import useCollection from './useCollection'
 
@@ -32,9 +33,9 @@ const Nav = ({ user }) => {
       </div>
       <nav className="ChannelNav">
         {channels.map(channel => (
-          <a key={channel.id} href={`/channel/${channel.id}`}>
+          <Link key={channel.id} to={`/channel/${channel.id}`}>
             # {channel.id}
-          </a>
+          </Link>
         ))}
       </nav>
     </div>
