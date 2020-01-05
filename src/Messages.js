@@ -1,24 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import db from './db'
+import React from 'react'
+import useCollection from './useCollection'
 
 const Messages = () => {
-  const [messages, setMessages] = useState([])
-
-  useEffect(() => {
-    return db
-      .collection('channels/general/messages')
-      .orderBy('createdAt')
-      .onSnapshot(snapshot => {
-        const docs = []
-        snapshot.forEach(doc => {
-          docs.push({
-            ...doc.data(),
-            id: doc.id
-          })
-        })
-        setMessages(docs)
-      })
-  }, [])
+  const messages = useCollection(
+    'channels/general/messages',
+    'createdAt'
+  )
 
   return (
     <div className="Messages">
