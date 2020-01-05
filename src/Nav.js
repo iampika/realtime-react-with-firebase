@@ -1,6 +1,6 @@
 import React from 'react'
-import useCollection from './useCollection'
 import { firebase } from './firebase'
+import useCollection from './useCollection'
 
 const Nav = ({ user }) => {
   const channels = useCollection('channels')
