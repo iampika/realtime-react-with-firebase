@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import useCollection from './useCollection'
 import { db } from './firebase'
 
-const Messages = () => {
+const Messages = ({ channelId }) => {
   const messages = useCollection(
-    'channels/random/messages',
+    `channels/${channelId}/messages`,
     'createdAt'
   )
 
@@ -78,7 +78,7 @@ const FirstMessageFromUser = ({ message, showDay }) => {
           <div>
             <span className="UserName">
               {author && author.displayName}
-            </span>
+            </span>{' '}
             <span className="TimeStamp">3:37 PM</span>
           </div>
           <div className="MessageContent">{message.text}</div>

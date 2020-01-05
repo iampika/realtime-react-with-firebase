@@ -1,12 +1,12 @@
 import React from 'react'
 import { db } from './firebase'
 
-const ChatInputBox = ({ user }) => {
+const ChatInputBox = ({ user, channelId }) => {
   const handleSubmit = event => {
     event.preventDefault()
     const { value } = event.target.elements[0]
 
-    db.collection('channels/random/messages').add({
+    db.collection(`channels/${channelId}/messages`).add({
       user: db.collection('users').doc(user.uid),
       text: value,
       createdAt: new Date()
