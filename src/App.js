@@ -14,14 +14,11 @@ function App() {
         setUser(null)
       }
     })
-  })
+  }, [])
 
   const handleSignIn = async () => {
     const provider = new firebase.auth.GoogleAuthProvider()
-    const result = await firebase
-      .auth()
-      .signInWithPopup(provider)
-    setUser(result.user)
+    await firebase.auth().signInWithPopup(provider)
   }
 
   return user ? (
