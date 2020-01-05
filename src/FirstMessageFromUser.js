@@ -1,4 +1,5 @@
 import React from 'react'
+import { format } from 'date-fns'
 import useDoc from './useDoc'
 
 const FirstMessageFromUser = ({ message, showDay }) => {
@@ -26,7 +27,12 @@ const FirstMessageFromUser = ({ message, showDay }) => {
             <span className="UserName">
               {author && author.displayName}
             </span>{' '}
-            <span className="TimeStamp">3:37 PM</span>
+            <span className="TimeStamp">
+              {format(
+                message.createdAt.seconds * 1000,
+                'h:mm:a'
+              )}
+            </span>
           </div>
           <div className="MessageContent">{message.text}</div>
         </div>
