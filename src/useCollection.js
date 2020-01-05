@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import db from './db'
+import { db } from './firebase'
 
 export default (path, orderBy) => {
   const [docs, setDocs] = useState([])

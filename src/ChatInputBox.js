@@ -1,5 +1,5 @@
 import React from 'react'
-import db from './db'
+import { db } from './firebase'
 
 const ChatInputBox = () => {
   const handleSubmit = event => {
