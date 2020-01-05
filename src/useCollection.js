@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { db } from './firebase'
 
-export default (path, orderBy) => {
+const useCollection = (path, orderBy) => {
   const [docs, setDocs] = useState([])
 
   useEffect(() => {
@@ -24,3 +24,5 @@ export default (path, orderBy) => {
   }, [])
   return docs
 }
+
+export default useCollection
